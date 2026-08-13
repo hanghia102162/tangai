@@ -349,13 +349,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startLoadingSequence() {
     const loadingTimer = setInterval(() => {
-      currentPercent += Math.floor(Math.random() * 10) + 6;
+      currentPercent += Math.floor(Math.random() * 8) + 5;
       if (currentPercent > 100) currentPercent = 100;
 
-      progressBarFill.style.transform = `scaleX(${currentPercent / 100})`;
+      progressBarFill.style.width = `${currentPercent}%`;
       progressText.textContent = `${currentPercent}%`;
 
-      if (currentPercent % 4 === 0) playTypingSound();
+      if (currentPercent % 3 === 0) playTypingSound();
 
       if (currentPercent < 25) {
         progressStatus.textContent = statusMessages[0];

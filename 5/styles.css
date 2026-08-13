@@ -221,14 +221,12 @@ html, body {
 }
 
 .progress-fill {
-  width: 100%;
+  width: 0%;
   height: 100%;
   background: linear-gradient(90deg, #38bdf8 0%, #34d399 50%, #fde047 100%);
   border-radius: 20px;
   position: relative;
-  transform-origin: left center;
-  transform: scaleX(0);
-  transition: transform 0.1s linear;
+  transition: width 0.15s ease-out;
   box-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
 }
 
