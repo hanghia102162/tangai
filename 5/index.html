@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chuyến Xe Gửi Thư Cute 🚚💖 - Anh Đang Gõ...</title>
+  <meta name="description" content="Một món quà nhỏ dễ thương với xe tải chạy thả những lá thư đong đầy tình cảm dành cho bạn.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Sound Toggle Floating Button -->
+  <button id="sound-toggle" class="glass-btn sound-btn" title="Bật/Tắt âm thanh">
+    <span id="sound-icon">🔊</span>
+    <span class="btn-text">Âm thanh</span>
+  </button>
+
+  <!-- Background Canvas for Stars and Floating Hearts -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 1. LOADING SCREEN -->
+  <div id="loading-screen" class="screen-active">
+    <div class="loader-card glass-panel">
+      <!-- Cute Typist Character Animation -->
+      <div class="cute-character-wrapper">
+        <div class="typing-sparkles">
+          <span>✨</span><span>💖</span><span>🌸</span><span>✨</span>
+        </div>
+        <!-- SVG Animated Cute Cat Typist -->
+        <svg class="cat-typist" viewBox="0 0 160 140" width="160" height="140">
+          <!-- Ears -->
+          <polygon points="35,45 20,15 55,30" fill="#ffb7c5" />
+          <polygon points="38,42 27,22 52,32" fill="#ff7597" />
+          <polygon points="125,45 140,15 105,30" fill="#ffb7c5" />
+          <polygon points="122,42 133,22 108,32" fill="#ff7597" />
+          
+          <!-- Head -->
+          <ellipse cx="80" cy="65" rx="55" ry="42" fill="#ffffff" stroke="#3a3052" stroke-width="4"/>
+          
+          <!-- Eyes (Happy/Blinking) -->
+          <path class="eye left-eye" d="M 55 60 Q 65 52 70 62" fill="none" stroke="#3a3052" stroke-width="4" stroke-linecap="round"/>
+          <path class="eye right-eye" d="M 90 62 Q 95 52 105 60" fill="none" stroke="#3a3052" stroke-width="4" stroke-linecap="round"/>
+          
+          <!-- Blushes -->
+          <ellipse cx="50" cy="72" rx="9" ry="6" fill="#ff8da1" opacity="0.6"/>
+          <ellipse cx="110" cy="72" rx="9" ry="6" fill="#ff8da1" opacity="0.6"/>
+          
+          <!-- Nose & Mouth -->
+          <polygon points="80,68 76,64 84,64" fill="#ff6b8b"/>
+          <path d="M 74 72 Q 80 77 86 72" fill="none" stroke="#3a3052" stroke-width="3" stroke-linecap="round"/>
+          
+          <!-- Paws typing at keyboard -->
+          <ellipse class="paw paw-left" cx="50" cy="102" rx="10" ry="8" fill="#ffffff" stroke="#3a3052" stroke-width="3"/>
+          <ellipse class="paw paw-right" cx="110" cy="102" rx="10" ry="8" fill="#ffffff" stroke="#3a3052" stroke-width="3"/>
+          
+          <!-- Laptop Keyboard -->
+          <rect x="30" y="105" width="100" height="15" rx="4" fill="#3a3052"/>
+          <rect class="spacebar" x="60" y="108" width="40" height="4" rx="2" fill="#ffb7c5"/>
+          <path d="M 25 120 L 135 120" stroke="#ff4b82" stroke-width="3"/>
+        </svg>
+      </div>
+
+      <!-- Text Header -->
+      <h1 class="loading-title">
+        Chờ chút anh đang gõ<span class="typing-dots">...</span> 💕
+      </h1>
+      <p class="loading-subtext">Đang xếp những dòng thư ngọt ngào nhất lên xe 🚚💌</p>
+
+      <!-- Progress Bar Container -->
+      <div class="progress-box">
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-fill" style="width: 0%;">
+            <span class="heart-pointer">💖</span>
+          </div>
+        </div>
+        <div class="progress-stats">
+          <span id="progress-text">0%</span>
+          <span id="progress-status">Đang soạn tin nhắn...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MAIN SCENE (Delivery Truck & Falling Letters) -->
+  <main id="main-stage" class="stage-hidden">
+    <!-- Sky & Environment Elements -->
+    <div class="sky-elements">
+      <div class="moon">
+        <div class="moon-crater c1"></div>
+        <div class="moon-crater c2"></div>
+      </div>
+      <div class="cloud cloud-1">☁️</div>
+      <div class="cloud cloud-2">☁️</div>
+      <div class="cloud cloud-3">✨</div>
+    </div>
+
+    <!-- Road & Scene Ground -->
+    <div class="road-container">
+      <div class="street-lights">
+        <div class="lamp lamp-1"><div class="lamp-glow"></div></div>
+        <div class="lamp lamp-2"><div class="lamp-glow"></div></div>
+      </div>
+      <div class="road-stripes"></div>
+    </div>
+
+    <!-- TRUCK ANIMATION CONTAINER -->
+    <div id="truck-wrapper" class="truck-wrapper">
+      <!-- Exhaust Heart Bubbles -->
+      <div class="exhaust-pipes">
+        <span class="heart-smoke s1">💖</span>
+        <span class="heart-smoke s2">💕</span>
+        <span class="heart-smoke s3">🌸</span>
+      </div>
+
+      <!-- Cute Delivery Truck SVG -->
+      <svg class="cute-truck-svg" viewBox="0 0 280 140" width="240" height="120">
+        <defs>
+          <linearGradient id="truckBody" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff7597" />
+            <stop offset="100%" stop-color="#ff3b6f" />
+          </linearGradient>
+          <linearGradient id="cargoBody" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="100%" stop-color="#ffe4ec" />
+          </linearGradient>
+          <linearGradient id="headlightGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#fff5ab" stop-opacity="0.9" />
+            <stop offset="100%" stop-color="#fff5ab" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+
+        <!-- Headlight Beam Projection -->
+        <polygon points="230,85 280,75 280,120 230,105" fill="url(#headlightGlow)" opacity="0.35"/>
+
+        <!-- Cargo Container (Back of Truck) -->
+        <rect x="20" y="30" width="135" height="70" rx="10" fill="url(#cargoBody)" stroke="#ff4b82" stroke-width="3"/>
+        <!-- Cargo Hearts Decor -->
+        <text x="50" y="72" font-size="28">💌</text>
+        <text x="85" y="68" font-size="18">💖</text>
+        <text x="110" y="75" font-size="22">📦</text>
+        <path d="M 20 45 L 155 45" stroke="#ffb7c5" stroke-width="2" stroke-dasharray="4,4"/>
+
+        <!-- Truck Cabin (Front) -->
+        <path d="M 155 50 Q 180 50 195 55 L 230 75 Q 235 80 235 90 L 235 100 L 155 100 Z" fill="url(#truckBody)" stroke="#3a3052" stroke-width="3"/>
+        
+        <!-- Windshield Window -->
+        <path d="M 175 56 L 192 59 L 215 75 L 175 75 Z" fill="#bce7ff" stroke="#3a3052" stroke-width="2"/>
+        <path d="M 182 58 L 190 73" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- Cute Driver Bear in Window -->
+        <circle cx="185" cy="68" r="6" fill="#8d5b4c"/>
+        <circle cx="183" cy="64" r="2" fill="#8d5b4c"/>
+        <circle cx="188" cy="64" r="2" fill="#8d5b4c"/>
+
+        <!-- Headlight Lamp -->
+        <circle cx="232" cy="85" r="5" fill="#fff5ab" stroke="#ffb830" stroke-width="2"/>
+
+        <!-- Truck Bumpers & Grille -->
+        <rect x="228" y="94" width="10" height="8" rx="2" fill="#d0d0d0"/>
+        
+        <!-- Animated Wheels -->
+        <g class="wheel wheel-back">
+          <circle cx="65" cy="102" r="16" fill="#3a3052"/>
+          <circle cx="65" cy="102" r="8" fill="#ffffff"/>
+          <circle cx="65" cy="102" r="3" fill="#ff4b82"/>
+          <line x1="65" y1="86" x2="65" y2="118" stroke="#3a3052" stroke-width="2"/>
+          <line x1="49" y1="102" x2="81" y2="102" stroke="#3a3052" stroke-width="2"/>
+        </g>
+        <g class="wheel wheel-front">
+          <circle cx="195" cy="102" r="16" fill="#3a3052"/>
+          <circle cx="195" cy="102" r="8" fill="#ffffff"/>
+          <circle cx="195" cy="102" r="3" fill="#ff4b82"/>
+          <line x1="195" y1="86" x2="195" y2="118" stroke="#3a3052" stroke-width="2"/>
+          <line x1="179" y1="102" x2="211" y2="102" stroke="#3a3052" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- DROPPED FALLING LETTERS CONTAINER -->
+    <div id="letters-container" class="letters-container"></div>
+
+    <!-- UI CONTROL BAR -->
+    <div class="control-bar glass-panel">
+      <button id="btn-replay-truck" class="action-btn glow-btn">
+        <span class="btn-icon">🚚</span>
+        <span>Cho xe chạy lại</span>
+      </button>
+
+      <button id="btn-star-storm" class="action-btn star-btn">
+        <span class="btn-icon">🌠</span>
+        <span>Mưa sao băng</span>
+      </button>
+    </div>
+
+    <!-- Instruction Hint Toast -->
+    <div id="toast-hint" class="toast-hint">
+      ✨ Nhấp vào lá thư bất kỳ trên đường để xem thông điệp ngọt ngào nhé! 💕
+    </div>
+  </main>
+
+  <!-- 3. LETTER READING MODAL -->
+  <div id="letter-modal" class="modal-overlay modal-hidden">
+    <div class="modal-backdrop"></div>
+    <div class="letter-card-wrapper">
+      
+      <!-- Envelope Unfolding Graphics Header -->
+      <div class="envelope-top-flap"></div>
+      
+      <!-- The Letter Paper Content -->
+      <div class="letter-paper">
+        <button id="btn-close-modal" class="close-modal-btn" title="Đóng thư">✕</button>
+
+        <div class="letter-header">
+          <span class="stamp-badge">💌 GỬI EM</span>
+          <span class="letter-date" id="modal-letter-date">Hôm nay</span>
+        </div>
+
+        <div class="letter-body">
+          <h2 id="modal-letter-title" class="letter-title">Tiêu đề lá thư</h2>
+          <div class="letter-divider">🌸 ✨ 🌸</div>
+          <p id="modal-letter-content" class="letter-content-text">
+            Nội dung lá thư ngọt ngào sẽ xuất hiện ở đây...
+          </p>
+        </div>
+
+        <div class="letter-footer">
+          <div class="sender-sign"><strong id="modal-sender-name">Hà Trọng Nghĩa</strong></div>
+          <div class="modal-nav-btns">
+            <button id="btn-prev-letter" class="nav-arrow-btn" title="Thư trước">⬅️ Thư trước</button>
+            <button id="btn-like-letter" class="like-heart-btn" title="Thả tim">❤️ <span id="like-count">100</span></button>
+            <button id="btn-next-letter" class="nav-arrow-btn" title="Thư tiếp">Thư tiếp ➡️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Canvas Confetti Overlay -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
