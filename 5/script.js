@@ -425,7 +425,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const letterEl = document.createElement('div');
     letterEl.className = 'falling-letter dropping';
     
-    letterEl.style.left = `${Math.max(20, Math.min(window.innerWidth - 80, startX))}px`;
+    const maxLeft = Math.max(15, Math.min(window.innerWidth - 75, startX));
+    letterEl.style.left = `${maxLeft}px`;
     
     const randomRot = (Math.random() - 0.5) * 24;
     letterEl.style.setProperty('--random-rotation', `${randomRot}deg`);
