@@ -1,0 +1,1201 @@
+/* ==========================================================
+   THE SWEET PINK & ROSE GOLD PALETTE • PHONG CÁCH GẦN GŨI
+   ========================================================== */
+:root {
+  --pink-main: #ff758f;
+  --pink-deep: #ff4d6d;
+  --pink-soft: #ffb3c1;
+  --pink-light: #ffe5ec;
+  --pink-cream: #fff0f3;
+  --rose-gold: #e8a598;
+  --text-dark: #4a1e35;
+  --text-muted: #78445f;
+  --glass-pink-bg: rgba(255, 255, 255, 0.72);
+  --glass-pink-border: rgba(255, 255, 255, 0.9);
+  --glass-pink-shadow: 0 18px 45px rgba(255, 117, 143, 0.22), 
+                       inset 0 1px 2px rgba(255, 255, 255, 0.95);
+
+  --font-title: 'Dancing Script', cursive;
+  --font-round: 'Comfortaa', cursive;
+  --font-sans: 'Quicksand', 'Be Vietnam Pro', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff0f3;
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Nền hồng phấn dịu ngọt, ấm áp và bồng bềnh */
+body.pink-theme::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 12% 18%, rgba(255, 182, 193, 0.45) 0%, transparent 40%),
+    radial-gradient(circle at 88% 82%, rgba(255, 192, 203, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 50% 45%, rgba(255, 240, 245, 0.6) 0%, transparent 55%),
+    linear-gradient(135deg, #fff0f3 0%, #ffe5ec 50%, #ffc2d1 100%);
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Canvas mưa cánh hoa đào & bong bóng lấp lánh */
+#bg-canvas, #confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+#bg-canvas { z-index: -1; }
+#confetti-canvas { z-index: 999; }
+
+/* ==========================================================
+   NÚT ĐIỀU KHIỂN & QUICK ACTIONS TONE HỒNG
+   ========================================================== */
+.audio-control-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.floating-circle-btn.pink-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid #ffccd5;
+  color: var(--pink-deep);
+  font-size: 1.35rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(255, 77, 109, 0.25);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.floating-circle-btn.pink-btn:hover {
+  transform: scale(1.12) rotate(8deg);
+  background: #fff;
+  border-color: var(--pink-main);
+  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+}
+
+.floating-circle-btn.playing {
+  animation: pink-pulse 1.8s infinite ease-in-out;
+  background: linear-gradient(135deg, #ffccd5, #fff0f3);
+}
+
+@keyframes pink-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 117, 143, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(255, 77, 109, 0.6), 0 0 40px rgba(255, 179, 193, 0.5); }
+}
+
+.music-tooltip {
+  position: absolute;
+  right: 65px;
+  background: rgba(74, 30, 53, 0.85);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.floating-circle-btn:hover .music-tooltip {
+  opacity: 1;
+}
+
+/* Quick Action Pills */
+.quick-actions {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.action-pill-btn.pink-pill {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid #ffccd5;
+  color: var(--pink-deep);
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 77, 109, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.action-pill-btn.pink-pill:hover {
+  transform: translateY(-4px) scale(1.06);
+  background: #ffffff;
+  border-color: var(--pink-deep);
+  box-shadow: 0 12px 30px rgba(255, 77, 109, 0.35);
+}
+
+/* ==========================================================
+   BỐ CỤC CHUNG & GLASS PANEL TONE HỒNG
+   ========================================================== */
+.main-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 45px 20px;
+  position: relative;
+}
+
+.stage {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.stage.hidden {
+  display: none;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.glass-panel-pink {
+  background: var(--glass-pink-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid var(--glass-pink-border);
+  border-radius: 30px;
+  box-shadow: var(--glass-pink-shadow);
+  padding: 45px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cute-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ffccd5 0%, #ffe5ec 100%);
+  border: 1.5px solid #ffb3c1;
+  color: var(--pink-deep);
+  font-family: var(--font-round);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 20px;
+  border-radius: 25px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(255, 117, 143, 0.2);
+}
+
+/* ==========================================================
+   GIAI ĐOẠN 1: HỘP QUÀ HỒNG NGỌT NGÀO
+   ========================================================== */
+#stage-gift .gift-welcome-card {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 50px 35px;
+}
+
+.subtitle-sweet {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.highlight-name-pink {
+  font-family: var(--font-title);
+  font-size: 4.2rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  line-height: 1.2;
+  margin-bottom: 12px;
+  text-shadow: 0 4px 15px rgba(255, 77, 109, 0.25);
+}
+
+.sweet-date-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-round);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 35px;
+}
+
+.dot-sep {
+  color: var(--pink-main);
+}
+
+/* Hộp quà dâu sữa đáng yêu */
+.gift-box-wrapper {
+  position: relative;
+  margin: 20px auto 10px;
+  width: 170px;
+  height: 170px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.gift-box-wrapper:hover {
+  transform: translateY(-8px) scale(1.06);
+}
+
+.gift-glow-aura.pink-aura {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: -15px;
+  left: -15px;
+  background: radial-gradient(circle, rgba(255, 117, 143, 0.4) 0%, rgba(255, 204, 213, 0) 70%);
+  border-radius: 50%;
+  animation: pink-halo 2.5s infinite alternate ease-in-out;
+  z-index: 1;
+}
+
+@keyframes pink-halo {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  100% { transform: scale(1.15); opacity: 0.9; }
+}
+
+.cute-gift-box {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 15px auto;
+  z-index: 2;
+  animation: gift-bounce 3s ease-in-out infinite alternate;
+}
+
+@keyframes gift-bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.gift-body.strawberry-milk {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(135deg, #ff85a1 0%, #ff5d8f 100%);
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(255, 77, 109, 0.35);
+}
+
+.cute-gift-box .gift-lid {
+  position: absolute;
+  top: 25px;
+  left: -7px;
+  width: 154px;
+  height: 32px;
+  background: linear-gradient(135deg, #ffccd5 0%, #ffb3c1 100%);
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  z-index: 5;
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.cute-gift-box.open .gift-lid {
+  transform: translateY(-60px) rotate(-24deg);
+  opacity: 0.3;
+}
+
+.gift-ribbon-vertical.pink-ribbon {
+  position: absolute;
+  top: 25px;
+  left: 56px;
+  width: 28px;
+  height: 115px;
+  background: #ffffff;
+  z-index: 4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gift-ribbon-horizontal.pink-ribbon {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  width: 140px;
+  height: 24px;
+  background: #ffffff;
+  z-index: 3;
+}
+
+/* Nơ hồng thắt xinh xắn */
+.pink-ribbon-bow {
+  position: absolute;
+  top: -22px;
+  left: 52px;
+  width: 50px;
+  height: 24px;
+}
+
+.bow-center {
+  position: absolute;
+  top: 6px;
+  left: 18px;
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 3;
+}
+
+.bow-wing {
+  position: absolute;
+  width: 26px;
+  height: 24px;
+  border: 4px solid #ffffff;
+  top: 0;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.bow-wing.left {
+  left: -2px;
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(-30deg);
+}
+
+.bow-wing.right {
+  right: -2px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(30deg);
+}
+
+.tap-hint-sweet {
+  font-family: var(--font-round);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin-top: 26px;
+}
+
+.tap-hint-sweet .pulse-icon {
+  display: inline-block;
+  animation: hand-bounce 1.2s infinite alternate;
+}
+
+@keyframes hand-bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
+/* ==========================================================
+   GIAI ĐOẠN 2: BÁNH KEM DÂU TÂY & THỔI NẾN
+   ========================================================== */
+#stage-cake .cake-container {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.title-sweet {
+  font-family: var(--font-round);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin-bottom: 12px;
+}
+
+.hint-text-sweet {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+
+.cake-area {
+  position: relative;
+  width: 320px;
+  margin: 30px auto 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Nến số 22 hồng pastel */
+.number-candles {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 2px;
+  position: relative;
+  z-index: 10;
+}
+
+.num-candle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flame.warm-flame {
+  width: 17px;
+  height: 32px;
+  background: radial-gradient(ellipse at bottom, #ffffff 10%, #ffd166 45%, #ff5d8f 85%, transparent 100%);
+  border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+  box-shadow: 0 0 18px rgba(255, 209, 102, 0.9), 0 0 35px rgba(255, 93, 143, 0.6);
+  animation: flicker 0.12s infinite alternate ease-in-out;
+  transform-origin: bottom center;
+  margin-bottom: 3px;
+  transition: all 0.5s ease;
+}
+
+.flame.extinguished {
+  opacity: 0;
+  transform: translateY(-15px) scale(0);
+  filter: blur(5px);
+}
+
+.candle-wick {
+  width: 3px;
+  height: 9px;
+  background: #555;
+}
+
+.candle-digit.pink-digit {
+  font-family: var(--font-round);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--pink-deep);
+  text-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
+}
+
+/* Bánh kem dâu sữa nhiều tầng */
+.sweet-cake-design .cake-tier {
+  border-radius: 16px 16px 6px 6px;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(255, 117, 143, 0.25);
+}
+
+.tier-top-pink {
+  width: 170px;
+  height: 60px;
+  background: linear-gradient(180deg, #ffffff 0%, #ffe5ec 100%);
+  z-index: 3;
+}
+
+.cream-drips {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  background: #ffffff;
+  border-radius: 12px 12px 8px 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.strawberries-row {
+  position: absolute;
+  top: -16px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.25rem;
+}
+
+.tier-middle-pink {
+  width: 225px;
+  height: 68px;
+  background: linear-gradient(180deg, #ffccd5 0%, #ffb3c1 100%);
+  margin-top: -6px;
+  z-index: 2;
+}
+
+.cream-decor-dots {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.cream-decor-dots .dot {
+  width: 9px;
+  height: 9px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.tier-bottom-pink {
+  width: 280px;
+  height: 75px;
+  background: linear-gradient(180deg, #ff9ebb 0%, #ff758f 100%);
+  margin-top: -6px;
+  z-index: 1;
+}
+
+.bottom-cream {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+}
+
+.cake-plate-wood {
+  position: absolute;
+  bottom: -15px;
+  left: -25px;
+  width: 330px;
+  height: 20px;
+  background: linear-gradient(180deg, #ffffff 0%, #f5e6e8 100%);
+  border-radius: 50%;
+  box-shadow: 0 15px 35px rgba(255, 117, 143, 0.3);
+}
+
+/* Nút Thổi Nến Màu Hồng */
+.primary-pink-btn {
+  background: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%);
+  border: none;
+  color: #ffffff;
+  padding: 16px 38px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: var(--font-round);
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.primary-pink-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(255, 77, 109, 0.6);
+}
+
+/* ==========================================================
+   GIAI ĐOẠN 3: BỨC THƯ TAY YÊU THƯƠNG & GÓC KỶ NIỆM
+   ========================================================== */
+.celebration-container {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Banner Chúc Mừng Ngọt Ngào */
+.celebration-banner {
+  text-align: center;
+  padding: 45px 30px;
+}
+
+.cute-cake-icon {
+  font-size: 3.2rem;
+  margin-bottom: 8px;
+  animation: bounce-icon 2s infinite ease-in-out;
+}
+
+@keyframes bounce-icon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.banner-sub-pink {
+  font-family: var(--font-round);
+  font-size: 0.88rem;
+  letter-spacing: 2.5px;
+  color: var(--pink-deep);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.main-celebration-title-pink {
+  font-family: var(--font-title);
+  font-size: 4.6rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  line-height: 1.15;
+  margin-bottom: 18px;
+  text-shadow: 0 4px 15px rgba(255, 77, 109, 0.25);
+}
+
+.date-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.badge-pill-sweet {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1.5px solid #ffccd5;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-family: var(--font-round);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.badge-pill-sweet.highlight-sweet {
+  background: linear-gradient(135deg, #ff85a1 0%, #ff4d6d 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(255, 77, 109, 0.35);
+}
+
+.celebration-quote-sweet {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Bức Thư Tay Chân Thành (Paper Style) */
+.letter-paper-style {
+  padding: 45px;
+  border-left: 6px solid var(--pink-main);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.letter-header-sweet {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px dashed #ffccd5;
+}
+
+.letter-icon-envelope {
+  font-size: 2.8rem;
+}
+
+.letter-tag {
+  font-family: var(--font-round);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--pink-main);
+  text-transform: uppercase;
+}
+
+.letter-title-sweet {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  color: var(--pink-deep);
+  font-weight: 700;
+}
+
+.letter-body-sweet {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--text-dark);
+}
+
+.letter-p {
+  margin-bottom: 16px;
+}
+
+/* Danh Sách Lời Chúc Ngọt Ngào */
+.sweet-wishes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 25px 0;
+}
+
+.wish-box {
+  background: rgba(255, 240, 243, 0.8);
+  border: 1px solid #ffccd5;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  transition: transform 0.3s ease;
+}
+
+.wish-box:hover {
+  transform: translateX(6px);
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(255, 117, 143, 0.2);
+}
+
+.wish-emoji {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.wish-desc {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text-dark);
+}
+
+.wish-desc strong {
+  color: var(--pink-deep);
+  font-weight: 700;
+}
+
+.letter-closing {
+  margin-top: 30px;
+  text-align: right;
+  border-top: 2px dashed #ffccd5;
+  padding-top: 20px;
+}
+
+.closing-text {
+  font-weight: 600;
+  color: var(--pink-deep);
+  font-size: 1.15rem;
+}
+
+.signature-sweet {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ==========================================================
+   4 LÁ THƯ MAY MẮN TUỔI 22
+   ========================================================== */
+.lucky-deck-section {
+  padding: 45px 35px;
+  text-align: center;
+}
+
+.section-title-wrap {
+  margin-bottom: 35px;
+}
+
+.section-title-pink {
+  font-family: var(--font-round);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin: 8px 0;
+}
+
+.section-desc-sweet {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.lucky-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 20px;
+}
+
+.flip-card {
+  height: 230px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  border-radius: 20px;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 16px;
+  box-shadow: 0 10px 25px rgba(255, 117, 143, 0.2);
+  border: 2px solid #ffffff;
+}
+
+/* Mặt trước thẻ pastel ngọt ngào */
+.flip-card-front.card-pink-pastel {
+  background: linear-gradient(145deg, #ffffff 0%, #fff0f3 100%);
+  border-color: #ffccd5;
+}
+
+.flip-card:hover .flip-card-front {
+  transform: translateY(-4px);
+  border-color: var(--pink-main);
+  box-shadow: 0 12px 30px rgba(255, 117, 143, 0.35);
+}
+
+.card-icon-sweet {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+.flip-card:hover .card-icon-sweet {
+  transform: scale(1.15);
+}
+
+.card-title-sweet {
+  font-family: var(--font-round);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.card-tap-sweet {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  background: #ffe5ec;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* Mặt sau thẻ */
+.flip-card-back.card-pink-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(145deg, #ff85a1 0%, #ff5d8f 100%);
+  color: #ffffff;
+}
+
+.card-back-emoji {
+  font-size: 2.4rem;
+  margin-bottom: 8px;
+}
+
+.flip-card-back h4 {
+  font-family: var(--font-round);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.flip-card-back p {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #fff0f3;
+}
+
+/* ==========================================================
+   KHUNG ẢNH KỶ NIỆM DÁN BĂNG DÍNH WASHI TAPE
+   ========================================================== */
+.memory-card-wrap {
+  text-align: center;
+  padding: 45px 30px;
+}
+
+.sweet-polaroid-frame {
+  background: #ffffff;
+  padding: 18px 18px 25px 18px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 15px 35px rgba(255, 117, 143, 0.25);
+  transform: rotate(-2deg);
+  transition: transform 0.4s ease;
+  max-width: 330px;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+.sweet-polaroid-frame:hover {
+  transform: rotate(0deg) scale(1.04);
+}
+
+/* Miếng băng dính Washi dán ở đầu ảnh */
+.washi-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 26px;
+  background: rgba(255, 182, 193, 0.7);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-left: 2px dashed rgba(255, 255, 255, 0.6);
+  border-right: 2px dashed rgba(255, 255, 255, 0.6);
+}
+
+.polaroid-inner-box {
+  width: 100%;
+  height: 260px;
+  background: linear-gradient(135deg, #ffd6e0 0%, #ffb3c1 100%);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.avatar-placeholder-sweet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-dark);
+  padding: 15px;
+}
+
+.cute-avatar-icon {
+  font-size: 4rem;
+  margin-bottom: 8px;
+  animation: float-face 2s infinite ease-in-out alternate;
+}
+
+@keyframes float-face {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
+.polaroid-name {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+}
+
+.polaroid-sub {
+  font-family: var(--font-round);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.upload-badge-sweet {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--pink-deep);
+  padding: 5px 12px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.sweet-polaroid-frame:hover .upload-badge-sweet {
+  background: var(--pink-deep);
+  color: #ffffff;
+}
+
+.custom-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.custom-photo-img.hidden {
+  display: none;
+}
+
+.polaroid-handwriting {
+  font-family: var(--font-title);
+  color: var(--text-dark);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-top: 15px;
+  line-height: 1.4;
+}
+
+/* Footer & Nút Xem Lại */
+.celebration-footer {
+  text-align: center;
+  margin: 10px 0 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.sweet-ghost-btn {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid #ffccd5;
+  color: var(--pink-deep);
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-family: var(--font-round);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(255, 117, 143, 0.2);
+}
+
+.sweet-ghost-btn:hover {
+  background: #ffffff;
+  border-color: var(--pink-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(255, 117, 143, 0.3);
+}
+
+/* ==========================================================
+   HIỆU ỨNG THẢ TIM & KHÓI NẾN DỄ THƯƠNG
+   ========================================================== */
+.floating-heart {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1001;
+  font-size: 2rem;
+  user-select: none;
+  animation: floatUpAndFadePink 2.4s ease-out forwards;
+}
+
+@keyframes floatUpAndFadePink {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(0.6) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-80px) scale(1.2) rotate(15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-190px) scale(1.4) rotate(-15deg);
+  }
+}
+
+.smoke-puff {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: rgba(255, 182, 193, 0.75);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: smokeRisePink 1.5s ease-out forwards;
+  z-index: 20;
+}
+
+@keyframes smokeRisePink {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.5) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.5) translateY(-50px) translateX(10px);
+    filter: blur(4px);
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+   ========================================================== */
+@media (max-width: 768px) {
+  .highlight-name-pink {
+    font-size: 3.2rem;
+  }
+  
+  .main-celebration-title-pink {
+    font-size: 3.2rem;
+  }
+
+  .title-sweet {
+    font-size: 1.8rem;
+  }
+
+  .glass-panel-pink {
+    padding: 35px 22px;
+    border-radius: 22px;
+  }
+
+  .letter-paper-style {
+    padding: 30px 20px;
+  }
+
+  .cake-area {
+    width: 280px;
+  }
+
+  .tier-top-pink { width: 140px; }
+  .tier-middle-pink { width: 190px; }
+  .tier-bottom-pink { width: 240px; }
+  .cake-plate-wood { width: 280px; }
+}
+
+@media (max-width: 480px) {
+  .highlight-name-pink {
+    font-size: 2.6rem;
+  }
+
+  .main-celebration-title-pink {
+    font-size: 2.6rem;
+  }
+
+  .lucky-cards-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .flip-card {
+    height: 200px;
+  }
+
+  .card-icon-sweet {
+    font-size: 2.4rem;
+  }
+
+  .letter-header-sweet {
+    flex-direction: column;
+    text-align: center;
+  }
+}

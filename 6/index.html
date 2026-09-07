@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc Mừng Sinh Nhật Chị Hà Thị Hòa 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pink-theme">
+  <!-- Canvas mưa cánh hoa đào & bong bóng lung linh -->
+  <canvas id="bg-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Nút điều khiển âm nhạc góc màn hình -->
+  <div class="audio-control-container">
+    <button id="music-toggle-btn" class="floating-circle-btn pink-btn" title="Bật / Tắt Nhạc Sinh Nhật Ấm Áp">
+      <span class="music-icon" id="music-icon">🎵</span>
+      <span class="music-tooltip">Nhạc sinh nhật êm dịu</span>
+    </button>
+  </div>
+
+  <!-- Nút tương tác nhanh: Thả tim hồng & Pháo hoa tim -->
+  <div class="quick-actions">
+    <button id="heart-burst-btn" class="action-pill-btn pink-pill" title="Thả ngàn trái tim ngọt ngào">
+      <span>💕</span> Thả Tim
+    </button>
+    <button id="fireworks-btn" class="action-pill-btn pink-pill" title="Bắn pháo hoa rực rỡ">
+      <span>✨</span> Pháo Hoa
+    </button>
+  </div>
+
+  <main class="main-wrapper">
+    <!-- GIAI ĐOẠN 1: HỘP QUÀ HỒNG NGỌT NGÀO -->
+    <section id="stage-gift" class="stage active">
+      <div class="gift-welcome-card glass-panel-pink">
+        <div class="cute-badge">🌸 Món quà nhỏ gửi chị yêu 🌸</div>
+        <h2 class="subtitle-sweet">Gửi người chị tuyệt vời nhất của em</h2>
+        <h1 class="highlight-name-pink">Chị Hà Thị Hòa</h1>
+        
+        <div class="sweet-date-tag">
+          <span>🎂 07 · 09 · 2004</span>
+          <span class="dot-sep">•</span>
+          <span>Tuổi 22 Thật Đẹp 🌷</span>
+        </div>
+
+        <div class="gift-box-wrapper" id="gift-box-trigger">
+          <div class="gift-glow-aura pink-aura"></div>
+          <div class="cute-gift-box">
+            <!-- Nắp hộp hồng pastel -->
+            <div class="gift-lid">
+              <div class="pink-ribbon-bow">
+                <div class="bow-center"></div>
+                <div class="bow-wing left"></div>
+                <div class="bow-wing right"></div>
+              </div>
+            </div>
+            <!-- Ruy băng kem dâu -->
+            <div class="gift-ribbon-vertical pink-ribbon"></div>
+            <div class="gift-ribbon-horizontal pink-ribbon"></div>
+            <!-- Thân hộp dâu sữa -->
+            <div class="gift-body strawberry-milk"></div>
+          </div>
+          <p class="tap-hint-sweet">
+            <span class="pulse-icon">👆</span> Chạm vào hộp quà để mở bất ngờ nha chị!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIAI ĐOẠN 2: BÁNH KEM DÂU TÂY & THỔI NẾN ƯỚC NGUYỆN -->
+    <section id="stage-cake" class="stage hidden">
+      <div class="cake-container glass-panel-pink">
+        <div class="stage-header">
+          <div class="cute-badge">🎂 Khoảnh khắc ước nguyện 🎂</div>
+          <h2 class="title-sweet">CHÚC MỪNG CHỊ HÒA 22 TUỔI!</h2>
+          <p class="hint-text-sweet">
+            Chị Hòa ơi, chị hãy nhắm mắt lại, ước một điều ước thật dễ thương rồi chạm vào bánh kem để thổi nến nhé! ✨
+          </p>
+        </div>
+
+        <div class="cake-area" id="cake-interactive">
+          <!-- Nến số 22 hồng pastel ngọn lửa ấm áp -->
+          <div class="number-candles">
+            <div class="num-candle-item" id="candle-1">
+              <div class="flame active warm-flame"></div>
+              <div class="candle-wick"></div>
+              <div class="candle-digit pink-digit">2</div>
+            </div>
+            <div class="num-candle-item" id="candle-2">
+              <div class="flame active warm-flame"></div>
+              <div class="candle-wick"></div>
+              <div class="candle-digit pink-digit">2</div>
+            </div>
+          </div>
+
+          <!-- Bánh kem dâu tây sữa ngọt ngào -->
+          <div class="cake-layers sweet-cake-design">
+            <!-- Tầng trên -->
+            <div class="cake-tier tier-top-pink">
+              <div class="cream-drips"></div>
+              <div class="strawberries-row">
+                <span>🍓</span><span>🍓</span><span>🍓</span><span>🍓</span>
+              </div>
+            </div>
+            <!-- Tầng giữa -->
+            <div class="cake-tier tier-middle-pink">
+              <div class="cream-decor-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <!-- Tầng đáy -->
+            <div class="cake-tier tier-bottom-pink">
+              <div class="bottom-cream"></div>
+              <div class="cake-plate-wood"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cake-controls">
+          <button id="blow-candle-btn" class="primary-pink-btn">
+            <span>🎂</span> Thổi Nến & Ước Nguyện <span>✨</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIAI ĐOẠN 3: BỨC THƯ TAY YÊU THƯƠNG & GÓC KỶ NIỆM ẤM ÁP -->
+    <section id="stage-celebration" class="stage hidden">
+      <div class="celebration-container">
+        
+        <!-- Banner chào mừng ngọt ngào -->
+        <div class="celebration-banner glass-panel-pink">
+          <div class="cute-cake-icon">🎉</div>
+          <h3 class="banner-sub-pink">HAPPY 22ND BIRTHDAY TO MY DEAR SISTER</h3>
+          <h1 class="main-celebration-title-pink">Chị Hà Thị Hòa</h1>
+          
+          <div class="date-badge-row">
+            <span class="badge-pill-sweet">🗓️ 07 / 09 / 2004</span>
+            <span class="badge-pill-sweet highlight-sweet">🌸 Tròn 22 Tuổi Xinh Tươi 🌸</span>
+            <span class="badge-pill-sweet">💖 07 / 09 / 2026</span>
+          </div>
+
+          <p class="celebration-quote-sweet">
+            "Chúc chị một tuổi 22 ngập tràn nụ cười, luôn hạnh phúc, bình an và được yêu thương thật nhiều!"
+          </p>
+        </div>
+
+        <!-- Bức thư tay chân thành & gần gũi -->
+        <div class="letter-card glass-panel-pink letter-paper-style">
+          <div class="letter-header-sweet">
+            <span class="letter-icon-envelope">💌</span>
+            <div class="letter-header-text">
+              <span class="letter-tag">Gửi người chị yêu dấu</span>
+              <h2 class="letter-title-sweet">Gửi Chị Hòa Của Em,</h2>
+            </div>
+          </div>
+
+          <div class="letter-body-sweet">
+            <p class="letter-p">
+              Hôm nay là ngày sinh nhật lần thứ 22 của chị — một ngày thật đặc biệt và ý nghĩa! Em chúc chị có một ngày sinh nhật thật ấm áp, vui tươi bên gia đình và những người chị yêu quý.
+            </p>
+            <p class="letter-p">
+              Thời gian trôi nhanh thật, chị em mình đã cùng nhau đi qua biết bao kỷ niệm vui buồn. Nhân dịp tuổi 22 đầy tươi đẹp này, em muốn gửi đến chị những lời chúc từ tận đáy lòng:
+            </p>
+
+            <div class="sweet-wishes-list">
+              <div class="wish-box">
+                <span class="wish-emoji">🌸</span>
+                <div class="wish-desc">
+                  <strong>Nụ cười luôn nở trên môi:</strong> Chúc chị mỗi ngày thức dậy đều tràn đầy năng lượng tích cực, bớt lo toan suy nghĩ và luôn giữ được nụ cười rạng rỡ, dễ thương.
+                </div>
+              </div>
+
+              <div class="wish-box">
+                <span class="wish-emoji">💼</span>
+                <div class="wish-desc">
+                  <strong>Công việc & Học tập êm xuôi:</strong> Chúc mọi dự định, công việc và mục tiêu của chị trong tuổi 22 đều thuận lợi, làm đâu thắng đó và gặt hái thật nhiều thành quả xứng đáng!
+                </div>
+              </div>
+
+              <div class="wish-box">
+                <span class="wish-emoji">💖</span>
+                <div class="wish-desc">
+                  <strong>Được yêu thương & Chiều chuộng:</strong> Chúc chị luôn được bao bọc bởi tình cảm chân thành, luôn gặp được những điều ngọt ngào và có một cuộc sống bình yên, ấm áp.
+                </div>
+              </div>
+
+              <div class="wish-box">
+                <span class="wish-emoji">✨</span>
+                <div class="wish-desc">
+                  <strong>Mãi xinh đẹp & Tự tin:</strong> Dù ở tuổi nào thì chị vẫn luôn là người chị gái tuyệt vời, chu đáo và đáng yêu nhất trong lòng em!
+                </div>
+              </div>
+            </div>
+
+            <div class="letter-closing">
+              <p class="closing-text">Sinh nhật thật vui vẻ và hạnh phúc chị nha! Yêu chị nhiều lắm! 💕🎂</p>
+              <div class="signature-sweet">~ Em của chị ~</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 LÁ THƯ MAY MẮN TUỔI 22 -->
+        <div class="lucky-deck-section glass-panel-pink">
+          <div class="section-title-wrap">
+            <div class="cute-badge">🍀 Rút Quẻ Đầu Tuổi Mới 🍀</div>
+            <h2 class="section-title-pink">Những Điều May Mắn Đang Đón Chờ Chị</h2>
+            <p class="section-desc-sweet">Chị chạm vào từng thẻ để mở thông điệp ngọt ngào nhé!</p>
+          </div>
+
+          <div class="lucky-cards-grid">
+            <!-- Thẻ 1: Niềm Vui -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front card-pink-pastel card-1">
+                  <div class="card-icon-sweet">🥰</div>
+                  <div class="card-title-sweet">Niềm Vui & Tinh Thần</div>
+                  <div class="card-tap-sweet">Chạm để xem 👆</div>
+                </div>
+                <div class="flip-card-back card-pink-back">
+                  <div class="card-back-emoji">☀️</div>
+                  <h4>Luôn Vui Vẻ Yêu Đời</h4>
+                  <p>365 ngày tới của chị sẽ ngập tràn tiếng cười, không còn áp lực hay muộn phiền nào làm chị tắt nụ cười!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Thẻ 2: Thành Công -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front card-pink-pastel card-2">
+                  <div class="card-icon-sweet">🎯</div>
+                  <div class="card-title-sweet">Sự Nghiệp & Tương Lai</div>
+                  <div class="card-tap-sweet">Chạm để xem 👆</div>
+                </div>
+                <div class="flip-card-back card-pink-back">
+                  <div class="card-back-emoji">🚀</div>
+                  <h4>Thuận Buồm Xuôi Gió</h4>
+                  <p>Mọi kế hoạch học tập hay công việc đều có quý nhân phù trợ, đạt được kết quả xuất sắc mỹ mãn!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Thẻ 3: Tài Lộc -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front card-pink-pastel card-3">
+                  <div class="card-icon-sweet">💰</div>
+                  <div class="card-title-sweet">Tài Chính & May Mắn</div>
+                  <div class="card-tap-sweet">Chạm để xem 👆</div>
+                </div>
+                <div class="flip-card-back card-pink-back">
+                  <div class="card-back-emoji">🛍️</div>
+                  <h4>Tiền Bạc Rủng Rỉnh</h4>
+                  <p>Ví tiền lúc nào cũng dày, thoải mái mua những món đồ chị thích, đi những nơi chị mơ ước!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Thẻ 4: Tình Cảm -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front card-pink-pastel card-4">
+                  <div class="card-icon-sweet">💐</div>
+                  <div class="card-title-sweet">Tình Yêu & Hạnh Phúc</div>
+                  <div class="card-tap-sweet">Chạm để xem 👆</div>
+                </div>
+                <div class="flip-card-back card-pink-back">
+                  <div class="card-back-emoji">💖</div>
+                  <h4>Ngập Tràn Yêu Thương</h4>
+                  <p>Luôn được mọi người xung quanh cưng chiều, trân trọng và gặp được những điều dịu dàng nhất!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KHUNG ẢNH KỶ NIỆM DÁN BĂNG DÍNH WASHI TAPE & STICKER -->
+        <div class="memory-card-wrap glass-panel-pink">
+          <input type="file" id="photo-upload-input" accept="image/*" style="display: none;">
+          <div class="sweet-polaroid-frame" id="polaroid-frame-trigger" title="Bấm vào để chọn ảnh chị Hòa">
+            <div class="washi-tape"></div>
+            <div class="polaroid-inner-box" id="polaroid-photo-box">
+              <div class="avatar-placeholder-sweet" id="photo-placeholder-content">
+                <div class="cute-avatar-icon">👧🏻🌸</div>
+                <div class="polaroid-name">Chị Hà Thị Hòa</div>
+                <div class="polaroid-sub">07.09.2004 — Tuổi 22 Ngọt Ngào</div>
+                <span class="upload-badge-sweet">📷 Bấm vào đây để chọn ảnh chị Hòa nhé</span>
+              </div>
+              <img id="custom-photo-img" class="custom-photo-img hidden" alt="Ảnh kỷ niệm chị Hà Thị Hòa">
+            </div>
+            <div class="polaroid-handwriting">
+              "Chúc chị gái của em tuổi 22 luôn xinh xắn như một đóa hoa!" 🌷💕
+            </div>
+          </div>
+        </div>
+
+        <!-- Nút chơi lại -->
+        <div class="celebration-footer">
+          <button id="replay-btn" class="sweet-ghost-btn">
+            <span>🔄</span> Thổi Nến Lại Nha
+          </button>
+          <button id="restart-all-btn" class="sweet-ghost-btn">
+            <span>🎁</span> Về Lại Hộp Quà
+          </button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
